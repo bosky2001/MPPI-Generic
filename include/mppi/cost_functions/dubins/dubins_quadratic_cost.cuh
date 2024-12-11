@@ -6,12 +6,14 @@
 #include <mppi/cost_functions/cost.cuh>
 #include <mppi/dynamics/dubins/dubins.cuh>
 #include <mppi/utils/file_utils.h>
+#include <mppi/utils/texture_helpers/texture_helper.cuh>
 
 struct DubinsQuadraticCostParams : public CostParams<2>
 {
   float position_coeff = 1000;
   float yaw_coeff = 100;
   float terminal_cost_coeff = 2;
+  float obstacle_cost_coeff = 1;
 
   float desired_terminal_state[3] = { 0, 0, M_PI};
 
@@ -50,7 +52,13 @@ public:
 
   float terminalCost(const Eigen::Ref<const output_array> s);
 
+  /**
+   * @brief Compute the Obstacle cost of the system
+   */
+  // void fillMap(const nav_msgs::OccupancyGrid::ConstPtr& ros_grid_msg_ptr);
+
 protected:
+  // TwoDTextureHelper<float>* map_helper_;
 };
 
 #if __CUDACC__

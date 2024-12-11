@@ -33,14 +33,14 @@ int main(int argc, char** argv)
 
 
 
-  new_params.position_coeff = 5; // Coefficient for state
-  new_params.yaw_coeff = 1;  // Coefficient for yaw
+  new_params.position_coeff = 50; // Coefficient for state
+  new_params.yaw_coeff = 10;  // Coefficient for yaw
 
   // Set desired terminal state
 
   new_params.desired_terminal_state[0] = 5;   // Desired x position
   new_params.desired_terminal_state[1] = 5;    // Desired y position
-  new_params.desired_terminal_state[2] = 0;  // Desired yaw
+  new_params.desired_terminal_state[2] = 1.57;  // Desired yaw
   cost->setParams(new_params);
 
   float dt = 0.02;
